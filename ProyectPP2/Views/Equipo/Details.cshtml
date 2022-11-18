@@ -1,0 +1,90 @@
+﻿@model ProyectPP2.Models.Equipo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Equipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaEgreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaEgreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.codigoInterno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.codigoInterno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anexos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Anexos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoEquipo.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoEquipo.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idEquipo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

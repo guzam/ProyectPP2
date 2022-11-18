@@ -16,7 +16,9 @@ namespace ProyectPP2
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
+                //defaults: new { controller = "Servicio", action = "Create", id = UrlParameter.Optional } //Si no le indico ruta Ira aquí por default
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+
             );
         }
     }

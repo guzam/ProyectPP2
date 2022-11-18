@@ -1,0 +1,588 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PROJECT_PP2_DB_ORIGINALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="6" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="condicionAfip" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="razonSocial" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="nroLegajo" />
+          </Key>
+          <Property Name="nroLegajo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" />
+          <Property Name="codigoPostal" Type="varchar" MaxLength="6" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contrasenia" Type="varchar" MaxLength="50" />
+          <Property Name="cargo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaIngreso" Type="date" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="idEquipo" />
+          </Key>
+          <Property Name="idEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idTipoEquipo" Type="int" Nullable="false" />
+          <Property Name="nroSerie" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="marca" Type="varchar" MaxLength="50" />
+          <Property Name="modelo" Type="varchar" MaxLength="20" />
+          <Property Name="fechaIngreso" Type="date" />
+          <Property Name="fechaEgreso" Type="date" />
+          <Property Name="codigoInterno" Type="varchar" MaxLength="20" />
+          <Property Name="Anexos" Type="varchar" MaxLength="200" />
+          <Property Name="idCLiente" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="idService" />
+          </Key>
+          <Property Name="idService" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nroService" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="tipoService" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="cantidadEquipos" Type="int" />
+          <Property Name="fechaInicio" Type="date" />
+          <Property Name="fechaFin" Type="date" />
+          <Property Name="fechaPresupuestado" Type="date" />
+          <Property Name="fechaPresupAprobado" Type="date" />
+          <Property Name="tecnicoACargo" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idEquipo" Type="int" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicioAsignado">
+          <Key>
+            <PropertyRef Name="idServiceAsignado" />
+          </Key>
+          <Property Name="idServiceAsignado" Type="int" Nullable="false" />
+          <Property Name="fechaAsignado" Type="date" Nullable="false" />
+          <Property Name="nroLegajo" Type="int" Nullable="false" />
+          <Property Name="idService" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoEquipo">
+          <Key>
+            <PropertyRef Name="idTipoEquipo" />
+          </Key>
+          <Property Name="idTipoEquipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Equipo_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idCLiente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipo_TipoEquipo">
+          <End Role="TipoEquipo" Type="Self.TipoEquipo" Multiplicity="1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEquipo">
+              <PropertyRef Name="idTipoEquipo" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idTipoEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="nroLegajo" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="tecnicoACargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Equipo">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="idEquipo" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="idEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioAsignado_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ServicioAsignado" Type="Self.ServicioAsignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="nroLegajo" />
+            </Principal>
+            <Dependent Role="ServicioAsignado">
+              <PropertyRef Name="nroLegajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioAsignado_Service">
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+          <End Role="ServicioAsignado" Type="Self.ServicioAsignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicio">
+              <PropertyRef Name="idService" />
+            </Principal>
+            <Dependent Role="ServicioAsignado">
+              <PropertyRef Name="idService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PROJECT_PP2_DB_ORIGINALModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Servicio" EntityType="Self.Servicio" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicioAsignado" EntityType="Self.ServicioAsignado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoEquipo" EntityType="Self.TipoEquipo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Equipo_Cliente" Association="Self.FK_Equipo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipo_TipoEquipo" Association="Self.FK_Equipo_TipoEquipo">
+            <End Role="TipoEquipo" EntitySet="TipoEquipo" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Cliente" Association="Self.FK_Servicio_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Empleado" Association="Self.FK_Servicio_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Equipo" Association="Self.FK_Servicio_Equipo">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Estado" Association="Self.FK_Servicio_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioAsignado_Empleado" Association="Self.FK_ServicioAsignado_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ServicioAsignado" EntitySet="ServicioAsignado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioAsignado_Service" Association="Self.FK_ServicioAsignado_Service">
+            <End Role="Servicio" EntitySet="Servicio" />
+            <End Role="ServicioAsignado" EntitySet="ServicioAsignado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PROJECT_PP2_DB_ORIGINALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="idCliente" />
+          </Key>
+          <Property Name="idCliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="condicionAfip" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="razonSocial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Equipo" Relationship="Self.FK_Equipo_Cliente" FromRole="Cliente" ToRole="Equipo" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_Servicio_Cliente" FromRole="Cliente" ToRole="Servicio" />
+        </EntityType>
+        <EntityType Name="Empleado">
+          <Key>
+            <PropertyRef Name="nroLegajo" />
+          </Key>
+          <Property Name="nroLegajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPostal" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contrasenia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="cargo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_Servicio_Empleado" FromRole="Empleado" ToRole="Servicio" />
+          <NavigationProperty Name="ServicioAsignado" Relationship="Self.FK_ServicioAsignado_Empleado" FromRole="Empleado" ToRole="ServicioAsignado" />
+        </EntityType>
+        <EntityType Name="Equipo">
+          <Key>
+            <PropertyRef Name="idEquipo" />
+          </Key>
+          <Property Name="idEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idTipoEquipo" Type="Int32" Nullable="false" />
+          <Property Name="nroSerie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="modelo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="fechaIngreso" Type="DateTime" Precision="0" />
+          <Property Name="fechaEgreso" Type="DateTime" Precision="0" />
+          <Property Name="codigoInterno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Anexos" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="idCLiente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Equipo_Cliente" FromRole="Equipo" ToRole="Cliente" />
+          <NavigationProperty Name="TipoEquipo" Relationship="Self.FK_Equipo_TipoEquipo" FromRole="Equipo" ToRole="TipoEquipo" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_Servicio_Equipo" FromRole="Equipo" ToRole="Servicio" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_Servicio_Estado" FromRole="Estado" ToRole="Servicio" />
+        </EntityType>
+        <EntityType Name="Servicio">
+          <Key>
+            <PropertyRef Name="idService" />
+          </Key>
+          <Property Name="idService" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nroService" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipoService" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidadEquipos" Type="Int32" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="0" />
+          <Property Name="fechaFin" Type="DateTime" Precision="0" />
+          <Property Name="fechaPresupuestado" Type="DateTime" Precision="0" />
+          <Property Name="fechaPresupAprobado" Type="DateTime" Precision="0" />
+          <Property Name="tecnicoACargo" Type="Int32" Nullable="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idEquipo" Type="Int32" Nullable="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Servicio_Cliente" FromRole="Servicio" ToRole="Cliente" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_Servicio_Empleado" FromRole="Servicio" ToRole="Empleado" />
+          <NavigationProperty Name="Equipo" Relationship="Self.FK_Servicio_Equipo" FromRole="Servicio" ToRole="Equipo" />
+          <NavigationProperty Name="Estado" Relationship="Self.FK_Servicio_Estado" FromRole="Servicio" ToRole="Estado" />
+          <NavigationProperty Name="ServicioAsignado" Relationship="Self.FK_ServicioAsignado_Service" FromRole="Servicio" ToRole="ServicioAsignado" />
+        </EntityType>
+        <EntityType Name="ServicioAsignado">
+          <Key>
+            <PropertyRef Name="idServiceAsignado" />
+          </Key>
+          <Property Name="idServiceAsignado" Type="Int32" Nullable="false" />
+          <Property Name="fechaAsignado" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="nroLegajo" Type="Int32" Nullable="false" />
+          <Property Name="idService" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK_ServicioAsignado_Empleado" FromRole="ServicioAsignado" ToRole="Empleado" />
+          <NavigationProperty Name="Servicio" Relationship="Self.FK_ServicioAsignado_Service" FromRole="ServicioAsignado" ToRole="Servicio" />
+        </EntityType>
+        <EntityType Name="TipoEquipo">
+          <Key>
+            <PropertyRef Name="idTipoEquipo" />
+          </Key>
+          <Property Name="idTipoEquipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Equipo" Relationship="Self.FK_Equipo_TipoEquipo" FromRole="TipoEquipo" ToRole="Equipo" />
+        </EntityType>
+        <Association Name="FK_Equipo_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idCLiente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="nroLegajo" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="tecnicoACargo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioAsignado_Empleado">
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="1" />
+          <End Role="ServicioAsignado" Type="Self.ServicioAsignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empleado">
+              <PropertyRef Name="nroLegajo" />
+            </Principal>
+            <Dependent Role="ServicioAsignado">
+              <PropertyRef Name="nroLegajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Equipo_TipoEquipo">
+          <End Role="TipoEquipo" Type="Self.TipoEquipo" Multiplicity="1" />
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoEquipo">
+              <PropertyRef Name="idTipoEquipo" />
+            </Principal>
+            <Dependent Role="Equipo">
+              <PropertyRef Name="idTipoEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Equipo">
+          <End Role="Equipo" Type="Self.Equipo" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipo">
+              <PropertyRef Name="idEquipo" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="idEquipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Servicio_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="Servicio">
+              <PropertyRef Name="idEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicioAsignado_Service">
+          <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+          <End Role="ServicioAsignado" Type="Self.ServicioAsignado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Servicio">
+              <PropertyRef Name="idService" />
+            </Principal>
+            <Dependent Role="ServicioAsignado">
+              <PropertyRef Name="idService" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PROJECT_PP2_DB_ORIGINALEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+          <EntitySet Name="Equipo" EntityType="Self.Equipo" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" />
+          <EntitySet Name="Servicio" EntityType="Self.Servicio" />
+          <EntitySet Name="ServicioAsignado" EntityType="Self.ServicioAsignado" />
+          <EntitySet Name="TipoEquipo" EntityType="Self.TipoEquipo" />
+          <AssociationSet Name="FK_Equipo_Cliente" Association="Self.FK_Equipo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Cliente" Association="Self.FK_Servicio_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Empleado" Association="Self.FK_Servicio_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioAsignado_Empleado" Association="Self.FK_ServicioAsignado_Empleado">
+            <End Role="Empleado" EntitySet="Empleado" />
+            <End Role="ServicioAsignado" EntitySet="ServicioAsignado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Equipo_TipoEquipo" Association="Self.FK_Equipo_TipoEquipo">
+            <End Role="TipoEquipo" EntitySet="TipoEquipo" />
+            <End Role="Equipo" EntitySet="Equipo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Equipo" Association="Self.FK_Servicio_Equipo">
+            <End Role="Equipo" EntitySet="Equipo" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Servicio_Estado" Association="Self.FK_Servicio_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Servicio" EntitySet="Servicio" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicioAsignado_Service" Association="Self.FK_ServicioAsignado_Service">
+            <End Role="Servicio" EntitySet="Servicio" />
+            <End Role="ServicioAsignado" EntitySet="ServicioAsignado" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PROJECT_PP2_DB_ORIGINALModelStoreContainer" CdmEntityContainer="PROJECT_PP2_DB_ORIGINALEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="condicionAfip" ColumnName="condicionAfip" />
+                <ScalarProperty Name="razonSocial" ColumnName="razonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empleado">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Empleado">
+              <MappingFragment StoreEntitySet="Empleado">
+                <ScalarProperty Name="nroLegajo" ColumnName="nroLegajo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="codigoPostal" ColumnName="codigoPostal" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contrasenia" ColumnName="contrasenia" />
+                <ScalarProperty Name="cargo" ColumnName="cargo" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipo">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Equipo">
+              <MappingFragment StoreEntitySet="Equipo">
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idTipoEquipo" ColumnName="idTipoEquipo" />
+                <ScalarProperty Name="nroSerie" ColumnName="nroSerie" />
+                <ScalarProperty Name="marca" ColumnName="marca" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+                <ScalarProperty Name="fechaIngreso" ColumnName="fechaIngreso" />
+                <ScalarProperty Name="fechaEgreso" ColumnName="fechaEgreso" />
+                <ScalarProperty Name="codigoInterno" ColumnName="codigoInterno" />
+                <ScalarProperty Name="Anexos" ColumnName="Anexos" />
+                <ScalarProperty Name="idCLiente" ColumnName="idCLiente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Servicio">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Servicio">
+              <MappingFragment StoreEntitySet="Servicio">
+                <ScalarProperty Name="idService" ColumnName="idService" />
+                <ScalarProperty Name="nroService" ColumnName="nroService" />
+                <ScalarProperty Name="tipoService" ColumnName="tipoService" />
+                <ScalarProperty Name="cantidadEquipos" ColumnName="cantidadEquipos" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaPresupuestado" ColumnName="fechaPresupuestado" />
+                <ScalarProperty Name="fechaPresupAprobado" ColumnName="fechaPresupAprobado" />
+                <ScalarProperty Name="tecnicoACargo" ColumnName="tecnicoACargo" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicioAsignado">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.ServicioAsignado">
+              <MappingFragment StoreEntitySet="ServicioAsignado">
+                <ScalarProperty Name="idServiceAsignado" ColumnName="idServiceAsignado" />
+                <ScalarProperty Name="fechaAsignado" ColumnName="fechaAsignado" />
+                <ScalarProperty Name="nroLegajo" ColumnName="nroLegajo" />
+                <ScalarProperty Name="idService" ColumnName="idService" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoEquipo">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.TipoEquipo">
+              <MappingFragment StoreEntitySet="TipoEquipo">
+                <ScalarProperty Name="idTipoEquipo" ColumnName="idTipoEquipo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

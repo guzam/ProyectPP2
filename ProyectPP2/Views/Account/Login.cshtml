@@ -1,10 +1,12 @@
 ﻿@using ProyectPP2.Models
 @model LoginViewModel
 @{
-    ViewBag.Title = "Iniciar sesión";
+    ViewBag.Title = "Inicio de sesión";
 }
 
 <h2>@ViewBag.Title.</h2>
+
+
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
@@ -51,13 +53,81 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>
-</div>
+ </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+
+
+    <!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
+    <!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
+    <!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
+    @*
+        <div class="row">
+            <form id="frm">
+                <div class="col-lg-6 col-lg-offset-3">
+                    Usuario
+                    <input type="text" name="usu" />
+                    Password
+                    <input type="password" name="pass"/>
+                    <!--<input type="button" class="btn btn-success" value="Entrar" />-->
+                    <input type="submit" class="btn btn-success" value="Entrar" />
+                </div>
+            </form>
+        </div>
+
+
+
+        <!--JQuery es una librería perteneciente al lenguaje de programación JavaScript,
+            uno de los más usados en materia de desarrollo web, de código abierto y
+            con la capacidad de mejorar la interactividad de una página web sin tener nociones
+            de programación o un profundo conocimiento de este lenguaje.-->
+        @section Scripts
+        {
+            <script>
+            $(document).ready(function () { //al inicio
+
+                $("#frm").submit(function (e) {
+                    // 1)crear selector de jquery que es el #frm
+                    // 2) sustituimos su submit
+                    e.preventDefault();
+                    //para que no haga el submit clasico
+                    //vamos a hacerlo con ajak por eso ponemos esto
+
+
+
+                    url = "@Url.Content("~/Account/Enter")"//esto le da la ruta al javascript
+                    //Url es una clase de MVC ya creada
+                    //Content es un metodo que resuelve una url
+
+                    parametros = $(this).serialize();
+                    //este this selecciona al mismo padre que esta seleccionado
+                    //al que invoca la funcion anonima
+                    //el this es igual que uno pusiera "#frm"
+                    //serialize nos da los atributos que estan dentro del form serializados o sea listos para la peticion
+
+                    $.post(url, parametros, function (data) {//aca hacemos la peticion
+
+                        if (data == "1") {
+                            document.location.href = "@Url.Content("~/")";
+
+                        }
+                        else {
+                            alert(data)
+                        }
+                    })
+
+                })
+            })
+            </script>
+            }
+
+        <!--El elemento HTML Script se utiliza para insertar o hacer referencia a un script ejecutable
+            dentro de un documento HTML o XHTML.-->
+
+
+        <!-----------------------------------------HASTA ACÁ----------------------------------------------->
+        <!-----------------------------------------HASTA ACÁ----------------------------------------------->
+        <!-----------------------------------------HASTA ACÁ----------------------------------------------->
+
+    *@

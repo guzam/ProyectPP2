@@ -1,0 +1,106 @@
+﻿@model ProyectPP2.Models.Servicio
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Servicio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nroService)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nroService)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoService)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoService)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cantidadEquipos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cantidadEquipos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaFin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaFin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaPresupuestado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaPresupuestado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaPresupAprobado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaPresupAprobado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Empleado.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Empleado.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipo.nroSerie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipo.nroSerie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estado.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estado.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idService }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
