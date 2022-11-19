@@ -42,6 +42,8 @@ namespace ProyectPP2.Models
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
+
+
     }
 
     public class ForgotViewModel
@@ -85,8 +87,13 @@ namespace ProyectPP2.Models
         [Compare("Password", ErrorMessage = "La contraseña y la contraseña de confirmación no coinciden.")]
         public string ConfirmPassword { get; set; }
 
-        [Display(Name = "Ciudad natal")]
-        public string Hometown { get; set; }
+        //[Display(Name = "Ciudad natal")]
+        //public string Hometown { get; set; }
+
+        [Display(Name = "Usuario")]
+        public string User { get; set; }
+
+
     }
 
     public class ResetPasswordViewModel

@@ -37,6 +37,7 @@ namespace ProyectPP2
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap.js"));
 
+            //////////////-----------------------------------------ACA AGREGAMOS EL NUEVO ESTILO bootstrap_lux.css (lo volví al orginal porque se ve mal en el navegador)
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
                  "~/Content/Site.css"));

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PROJECT_PP2_DB_ORIGINALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="PROJECT_PP2_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="idCliente" />
@@ -184,7 +184,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PROJECT_PP2_DB_ORIGINALModelStoreContainer">
+        <EntityContainer Name="PROJECT_PP2_DBModelStoreContainer">
           <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipo" EntityType="Self.Equipo" Schema="dbo" store:Type="Tables" />
@@ -229,7 +229,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="PROJECT_PP2_DB_ORIGINALModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="PROJECT_PP2_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="idCliente" />
@@ -471,9 +471,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="PROJECT_PP2_DB_ORIGINALModelStoreContainer" CdmEntityContainer="PROJECT_PP2_DB_ORIGINALEntities">
+        <EntityContainerMapping StorageEntityContainer="PROJECT_PP2_DBModelStoreContainer" CdmEntityContainer="PROJECT_PP2_DB_ORIGINALEntities">
           <EntitySetMapping Name="Cliente">
-            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Cliente">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DBModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="idCliente" ColumnName="idCliente" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -487,7 +487,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Empleado">
-            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Empleado">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DBModel.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
                 <ScalarProperty Name="nroLegajo" ColumnName="nroLegajo" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -503,7 +503,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Equipo">
-            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Equipo">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DBModel.Equipo">
               <MappingFragment StoreEntitySet="Equipo">
                 <ScalarProperty Name="idEquipo" ColumnName="idEquipo" />
                 <ScalarProperty Name="idTipoEquipo" ColumnName="idTipoEquipo" />
@@ -519,7 +519,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Estado">
-            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Estado">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DBModel.Estado">
               <MappingFragment StoreEntitySet="Estado">
                 <ScalarProperty Name="idEstado" ColumnName="idEstado" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
@@ -527,7 +527,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Servicio">
-            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.Servicio">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DBModel.Servicio">
               <MappingFragment StoreEntitySet="Servicio">
                 <ScalarProperty Name="idService" ColumnName="idService" />
                 <ScalarProperty Name="nroService" ColumnName="nroService" />
@@ -545,7 +545,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ServicioAsignado">
-            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.ServicioAsignado">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DBModel.ServicioAsignado">
               <MappingFragment StoreEntitySet="ServicioAsignado">
                 <ScalarProperty Name="idServiceAsignado" ColumnName="idServiceAsignado" />
                 <ScalarProperty Name="fechaAsignado" ColumnName="fechaAsignado" />
@@ -555,7 +555,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TipoEquipo">
-            <EntityTypeMapping TypeName="PROJECT_PP2_DB_ORIGINALModel.TipoEquipo">
+            <EntityTypeMapping TypeName="PROJECT_PP2_DBModel.TipoEquipo">
               <MappingFragment StoreEntitySet="TipoEquipo">
                 <ScalarProperty Name="idTipoEquipo" ColumnName="idTipoEquipo" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />

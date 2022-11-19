@@ -226,43 +226,43 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cliente.cs">
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DB_ORIGINAL_Model.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DB_ORIGINAL_Model.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DB_ORIGINAL_Model.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DB_ORIGINAL_Model.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DB_ORIGINAL_Model.edmx</DependentUpon>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Empleado.cs">
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Equipo.cs">
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Estado.cs">
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Models\PROJECT_PP2_DB_ORIGINALModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECT_PP2_DB_ORIGINALModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PROJECT_PP2_DB_ORIGINALModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Servicio.cs">
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ServicioAsignado.cs">
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoEquipo.cs">
-      <DependentUpon>DB_ORIGINAL_Model.tt</DependentUpon>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -276,19 +276,20 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap_lux.css" />
     <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\DB_ORIGINAL_Model.Context.tt">
+    <Content Include="Models\PROJECT_PP2_DB_ORIGINALModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB_ORIGINAL_Model.edmx</DependentUpon>
-      <LastGenOutput>DB_ORIGINAL_Model.Context.cs</LastGenOutput>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.edmx</DependentUpon>
+      <LastGenOutput>PROJECT_PP2_DB_ORIGINALModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DB_ORIGINAL_Model.tt">
+    <Content Include="Models\PROJECT_PP2_DB_ORIGINALModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DB_ORIGINAL_Model.edmx</DependentUpon>
-      <LastGenOutput>DB_ORIGINAL_Model.cs</LastGenOutput>
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.edmx</DependentUpon>
+      <LastGenOutput>PROJECT_PP2_DB_ORIGINALModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\app\_run.js" />
     <Content Include="Scripts\app\app.datamodel.js" />
@@ -316,12 +317,12 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <EntityDeploy Include="Models\DB_ORIGINAL_Model.edmx">
+    <EntityDeploy Include="Models\PROJECT_PP2_DB_ORIGINALModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DB_ORIGINAL_Model.Designer.cs</LastGenOutput>
+      <LastGenOutput>PROJECT_PP2_DB_ORIGINALModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DB_ORIGINAL_Model.edmx.diagram">
-      <DependentUpon>DB_ORIGINAL_Model.edmx</DependentUpon>
+    <Content Include="Models\PROJECT_PP2_DB_ORIGINALModel.edmx.diagram">
+      <DependentUpon>PROJECT_PP2_DB_ORIGINALModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
