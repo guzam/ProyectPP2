@@ -8,8 +8,8 @@
 
 
 <div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
+    <div class="col-md-6 text-center">
+        <section id="loginForm" class="card-login text-center">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
@@ -17,21 +17,28 @@
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
+                    @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+                    <div>
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-poomba" })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @*<div class="form-group">
                     @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
-                </div>
+                </div>*@
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+                    <div class="">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-poomba" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="">
                         <div class="checkbox">
                             @Html.CheckBoxFor(m => m.RememberMe)
                             @Html.LabelFor(m => m.RememberMe)
@@ -39,7 +46,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="">
                         <input type="submit" value="Iniciar sesión" class="btn btn-default" />
                     </div>
                 </div>
@@ -53,81 +60,81 @@
             }
         </section>
     </div>
- </div>
+</div>
 
 
 
 
 
-    <!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
-    <!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
-    <!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
-    @*
-        <div class="row">
-            <form id="frm">
-                <div class="col-lg-6 col-lg-offset-3">
-                    Usuario
-                    <input type="text" name="usu" />
-                    Password
-                    <input type="password" name="pass"/>
-                    <!--<input type="button" class="btn btn-success" value="Entrar" />-->
-                    <input type="submit" class="btn btn-success" value="Entrar" />
-                </div>
-            </form>
-        </div>
+<!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
+<!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
+<!-------------------------------DESDE ACÁ ES TODO NUEVO----------------------------------->
+@*
+    <div class="row">
+        <form id="frm">
+            <div class="col-lg-6 col-lg-offset-3">
+                Usuario
+                <input type="text" name="usu" />
+                Password
+                <input type="password" name="pass"/>
+                <!--<input type="button" class="btn btn-success" value="Entrar" />-->
+                <input type="submit" class="btn btn-success" value="Entrar" />
+            </div>
+        </form>
+    </div>
 
 
 
-        <!--JQuery es una librería perteneciente al lenguaje de programación JavaScript,
-            uno de los más usados en materia de desarrollo web, de código abierto y
-            con la capacidad de mejorar la interactividad de una página web sin tener nociones
-            de programación o un profundo conocimiento de este lenguaje.-->
-        @section Scripts
-        {
-            <script>
-            $(document).ready(function () { //al inicio
+    <!--JQuery es una librería perteneciente al lenguaje de programación JavaScript,
+        uno de los más usados en materia de desarrollo web, de código abierto y
+        con la capacidad de mejorar la interactividad de una página web sin tener nociones
+        de programación o un profundo conocimiento de este lenguaje.-->
+    @section Scripts
+    {
+        <script>
+        $(document).ready(function () { //al inicio
 
-                $("#frm").submit(function (e) {
-                    // 1)crear selector de jquery que es el #frm
-                    // 2) sustituimos su submit
-                    e.preventDefault();
-                    //para que no haga el submit clasico
-                    //vamos a hacerlo con ajak por eso ponemos esto
+            $("#frm").submit(function (e) {
+                // 1)crear selector de jquery que es el #frm
+                // 2) sustituimos su submit
+                e.preventDefault();
+                //para que no haga el submit clasico
+                //vamos a hacerlo con ajak por eso ponemos esto
 
 
 
-                    url = "@Url.Content("~/Account/Enter")"//esto le da la ruta al javascript
-                    //Url es una clase de MVC ya creada
-                    //Content es un metodo que resuelve una url
+                url = "@Url.Content("~/Account/Enter")"//esto le da la ruta al javascript
+                //Url es una clase de MVC ya creada
+                //Content es un metodo que resuelve una url
 
-                    parametros = $(this).serialize();
-                    //este this selecciona al mismo padre que esta seleccionado
-                    //al que invoca la funcion anonima
-                    //el this es igual que uno pusiera "#frm"
-                    //serialize nos da los atributos que estan dentro del form serializados o sea listos para la peticion
+                parametros = $(this).serialize();
+                //este this selecciona al mismo padre que esta seleccionado
+                //al que invoca la funcion anonima
+                //el this es igual que uno pusiera "#frm"
+                //serialize nos da los atributos que estan dentro del form serializados o sea listos para la peticion
 
-                    $.post(url, parametros, function (data) {//aca hacemos la peticion
+                $.post(url, parametros, function (data) {//aca hacemos la peticion
 
-                        if (data == "1") {
-                            document.location.href = "@Url.Content("~/")";
+                    if (data == "1") {
+                        document.location.href = "@Url.Content("~/")";
 
-                        }
-                        else {
-                            alert(data)
-                        }
-                    })
-
+                    }
+                    else {
+                        alert(data)
+                    }
                 })
+
             })
-            </script>
-            }
+        })
+        </script>
+        }
 
-        <!--El elemento HTML Script se utiliza para insertar o hacer referencia a un script ejecutable
-            dentro de un documento HTML o XHTML.-->
+    <!--El elemento HTML Script se utiliza para insertar o hacer referencia a un script ejecutable
+        dentro de un documento HTML o XHTML.-->
 
 
-        <!-----------------------------------------HASTA ACÁ----------------------------------------------->
-        <!-----------------------------------------HASTA ACÁ----------------------------------------------->
-        <!-----------------------------------------HASTA ACÁ----------------------------------------------->
+    <!-----------------------------------------HASTA ACÁ----------------------------------------------->
+    <!-----------------------------------------HASTA ACÁ----------------------------------------------->
+    <!-----------------------------------------HASTA ACÁ----------------------------------------------->
 
-    *@
+*@
