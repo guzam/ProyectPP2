@@ -55,10 +55,14 @@ namespace ProyectPP2.Models
 
     public class LoginViewModel
     {
+        //[Required]
+        //[Display(Name = "Correo electrónico")]
+        //[EmailAddress]
+        //public string Email { get; set; }
         [Required]
-        [Display(Name = "Correo electrónico")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Usuario")]
+        public string UserName { get; set; }
+
 
         [Required]
         [DataType(DataType.Password)]
@@ -71,6 +75,10 @@ namespace ProyectPP2.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [Display(Name = "Usuario")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Correo electrónico")]
@@ -98,10 +106,14 @@ namespace ProyectPP2.Models
 
     public class ResetPasswordViewModel
     {
+        //[Required]
+        //[EmailAddress]
+        //[Display(Name = "Correo electrónico")]
+        //public string Email { get; set; }
         [Required]
-        [EmailAddress]
-        [Display(Name = "Correo electrónico")]
-        public string Email { get; set; }
+        [Display(Name = "Usuario")]
+        public string UserName { get; set; }
+
 
         [Required]
         [StringLength(100, ErrorMessage = "El número de caracteres de {0} debe ser al menos {2}.", MinimumLength = 6)]
@@ -120,8 +132,8 @@ namespace ProyectPP2.Models
     public class ForgotPasswordViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Correo electrónico")]
-        public string Email { get; set; }
+        [Display(Name = "Usuario")]
+        public string UserName { get; set; }
+
     }
 }
