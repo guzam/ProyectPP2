@@ -73,11 +73,18 @@ namespace ProyectPP2.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Logout(string returnUrl)
+        {
+            
+            return new RedirectResult("https://poomba.auth.us-east-1.amazoncognito.com/logout?client_id=34jb0ks0ksqd52nk5vkm7ph61e&logout_uri=https://poomba.auth.us-east-1.amazoncognito.com/login?client_id=34jb0ks0ksqd52nk5vkm7ph61e&response_type=code&scope=email+openid+phone&redirect_uri=https%3A%2F%2Fec2-3-92-45-181.compute-1.amazonaws.com");
+        }
+
 
         //POST: /Account/Login
 
         //desde aca comentado para login
-       [HttpPost]
+        [HttpPost]
        [AllowAnonymous]
        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)

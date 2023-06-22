@@ -12,39 +12,50 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nroService)
+            Servicio
+            <!--@Html.DisplayNameFor(model => model.nroService)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tipoService)
+            Tipo
+            <!--@Html.DisplayNameFor(model => model.tipoService)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.cantidadEquipos)
+            Cantidad
+            <!--@Html.DisplayNameFor(model => model.cantidadEquipos)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaInicio)
+            Inicio
+            <!--@Html.DisplayNameFor(model => model.fechaInicio)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaFin)
+            Presupuesto
+            <!--@Html.DisplayNameFor(model => model.fechaPresupuestado)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaPresupuestado)
+            Aprobación
+            <!--@Html.DisplayNameFor(model => model.fechaPresupAprobado)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.fechaPresupAprobado)
+            Finalización
+            <!--@Html.DisplayNameFor(model => model.fechaFin)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente.nombre)
+            Técnico
+            <!--@Html.DisplayNameFor(model => model.Empleado.nombre)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Empleado.nombre)
+            Cliente
+            <!--@Html.DisplayNameFor(model => model.Cliente.nombre)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Equipo.nroSerie)
+            N° Serie
+            <!--@Html.DisplayNameFor(model => model.Equipo.nroSerie)-->
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estado.nombre)
+            Estado
+            <!--@Html.DisplayNameFor(model => model.Estado.nombre)-->
         </th>
-        <th></th>
+        <th>Acción</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -71,10 +82,10 @@
             @Html.DisplayFor(modelItem => item.fechaPresupAprobado)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Cliente.nombre)
+            @Html.DisplayFor(modelItem => item.Empleado.nombre)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Empleado.nombre)
+            @Html.DisplayFor(modelItem => item.Cliente.nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Equipo.nroSerie)
@@ -83,9 +94,9 @@
             @Html.DisplayFor(modelItem => item.Estado.nombre)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idService }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idService }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idService })
+            @Html.ActionLink("Editar", "Edit", new { id=item.idService }) 
+            @Html.ActionLink("Detalle", "Details", new { id=item.idService }) 
+            @Html.ActionLink("Borrar", "Delete", new { id=item.idService })
         </td>
     </tr>
 }
